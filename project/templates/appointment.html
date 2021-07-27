@@ -1,0 +1,64 @@
+{% extends 'basic.html' %}
+
+{% block title%}hello{% endblock %}
+{% block body %}
+
+<!-- {% for post in allPosts  %}
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">Article  by {{post.author}}</strong>
+                <h2 class="mb-0">{{post.title}}</h2>
+                <p class="card-text mb-auto text-primary">{{post.summary| truncatechars:15}}</p>
+                <div class="my-2">
+                    <a href="/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+                </div>
+                
+            </div>
+
+
+            <div class="col-auto d-none d-lg-block">
+                <img src='/media/{{post.image}}' class="img-thumbnail img-fluid"width="250px"style="height:100%" alt="...">
+            </div> 
+            </div>
+
+    {% endfor %} -->
+ <div class="container col-lg-5">
+    {%for d in all_users%}
+    {%if d.user.is_superuser%}
+
+    <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-3 shadow-sm h-md-250 my-3 position-relative" style="width: 600px; height: 250px;">
+        <div class="col p-4 d-flex flex-column position-static">
+            <div class="container">
+            <h3 class="d-inline-block mb-2 text-primary" id="usernmae">Dr. {{d.user.username}}</h3><br>
+            <h6 id="city">city: {{d.city}}</h6>
+            <h6 id="emsil">email: {{d.user.email}}</h6>
+            <div class="pt-3">
+            <a type="submit"  class="btn btn-primary" href="/calendar/bookapt" onclick="myFunction()">Confirm</a>
+            </div>
+            </div>
+            <script>
+                function myFunction() {
+                    var usernmae = document.getElementById("usernmae").innerHTML;
+                    sessionStorage.setItem("usernmae", usernmae);
+                }
+            </script>
+            
+        </div>
+
+        <div class="col-auto d-none d-lg-block pt-4 pr-5">
+            <img class="rounded-circle" src="/media/{{d.image}}" alt="Generic placeholder image" width="130" height="130" >
+        </div>
+    </div>
+
+
+
+    {%endif%}
+    {%endfor%}
+</div> 
+
+
+{% endblock %}
+
+
+

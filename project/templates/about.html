@@ -1,0 +1,70 @@
+{% extends 'basic.html' %}
+
+{% block title%}hello{% endblock %}
+{% block body %}
+
+
+
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  {% for message in messages  %}            
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %} 
+
+
+<div class="container">
+  <h1 class="text-center">Hello {{user.username}} (User)</h1>
+
+  <div class="container">
+    <div class="jumbotron my-3">
+      <h1 class="display-4">Welcome to Blog!</h1>
+      <p class="lead">This is a simple hero unit of Blogs.</p>
+      <hr class="my-4">
+      <p><h4><strong>Prevention is better then cure</strong> So please go and have a look</h4></p>
+      <a class="btn btn-primary btn-lg" href="/four" role="button">Mental Health</a>
+      <a class="btn btn-primary btn-lg" href="/one" role="button">Heart Disease</a>
+      <a class="btn btn-primary btn-lg" href="/three" role="button">Covid-19</a>
+      <a class="btn btn-primary btn-lg" href="/two" role="button">Immunization</a>
+      </div>
+    </div>
+
+
+    <div class="container col-lg-3 mt-5">
+    <a class="btn btn-success btn-lg" href="/appointment" role="button">Book an appointment</a>
+    </div>
+
+
+
+
+
+  <h3>Your Details:-</h3>
+<table class="table">
+  <tbody>
+    <tr>      
+      <td>Username:</td>
+      <td>{{user.username}}</td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td>{{user.first_name}}</td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td>{{user.last_name}}</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>{{user.email}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>home</title>
+    <style>
+        body {
+            width: auto;
+            height: auto;
+          }        
+          body::after {
+            content: "";
+            background: url('https://i.pinimg.com/originals/36/42/29/3642291603d80cbf90ee7421ba227a8b.jpg');
+            opacity: 0.2;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;   
+          }
+         
+          
+        </style>
+  </head>
+
+  <!-- <body>
+    <h2 class="text-center mt-5 text-den">Heii You Wanna Go Inside!!</h2>
+  <div class="container col-lg-3 mt-5">
+      
+      <a class="btn btn-lg btn-primary btn-block" href="doctor/" role="button">Are you a Doctor ??</a><br><br>
+      <a class="btn btn-lg btn-primary btn-block" href="user/" role="button">Are you a User  ??</a>
+ 
+  </div>
+  
+</body> -->
+
+
+<body>
+
+  {% for message in messages  %}            
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %} 
+<div class="container mt-5">
+  {% if user.is_authenticated %}
+  <h1>you are logged in as {{request.user}}</h1>
+  <br><a href="logout">logout</a>
+  {% else %}
+  <h1 class="text-center">Please register Your self !! And Enjoy</h1>
+  <div class="container col-lg-3 mt-5">
+        <!-- signup modal-->
+        <span>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#signupModal">SignUp</button><br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#loginModal">login</button><br>
+        </span>  
+        
+  </div>
+  {%endif%}
+</div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalTitle">SignUp Here</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method='post' enctype="multipart/form-data" name="stud_form">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username"
+                placeholder="Choose a unique username" required>
+            </div>
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name"
+                required>
+            </div>
+          
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="pass1">Choose a password</label>
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="pass2">Confirm Password</label>
+              <input type="password" class="form-control" id="pass2" name="pass2"
+                placeholder="Enter your password again" required>
+            </div>
+
+            <div class="form-group">
+              <label for="image">Profile Picture</label>
+              <input type="file" class="form-control" id="image" name="image"
+                required>
+            </div> 
+
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" name="city" placeholder="Enter Your City"
+                required>
+            </div>
+
+            
+             <div class="form-group">
+              <label for="state">state</label>
+              <input type="text" class="form-control" id="state" name="state" placeholder="name of your state"
+                required>
+            </div>
+
+            
+
+            <div class="form-group">
+              <label for="pincode">pincode</label>
+              <input type="text" class="form-control" id="pincode" name="pincode" placeholder="please enter your pincode"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="option">Are you a doctor(mention in yes or no)</label>
+              <input type="text" class="form-control" id="option" name="option" placeholder="yes/no"
+                required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalTitle">Login Here</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/login" method="POST"> {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername"
+                placeholder="Enter your username " required>
+            </div>
+            <div class="form-group">
+              <label for="pass">Enter your password </label>
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                placeholder="Enter your password " required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+</body>
+</html>

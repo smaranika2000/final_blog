@@ -1,0 +1,32 @@
+{% extends 'basic.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %} 
+
+
+{% block body %}
+
+<div class="container my-3">
+  <h2>Coding Articles</h2>
+  {% for post in allPosts  %}
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">Article  by {{post.author}}</strong>
+                <h2 class="mb-0">{{post.title}}</h2>
+                <p class="card-text mb-auto text-primary">{{post.summary| truncatechars:15}}</p>
+                <div class="my-2">
+                    <a href="/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+                </div>
+                
+            </div>
+
+
+            <div class="col-auto d-none d-lg-block">
+                <img src='/media/{{post.image}}' class="img-thumbnail img-fluid"width="250px"style="height:100%" alt="...">
+            </div> 
+            </div>
+
+    {% endfor %}
+  </div>
+ {% endblock %}
+
